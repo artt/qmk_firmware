@@ -25,12 +25,10 @@
 
 enum custom_keycodes {
     PLACEHOLDER = SAFE_RANGE,  // can always be here (4 bytes)
-    // CYCLE                      // cycle through first BASE_LAYERS (62 bytes)
 };
 
 enum custom_layers {
     _QWERTY,
-    // _COLEMAK,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -107,15 +105,15 @@ led_config_t g_led_config = {
         // right side underglow
         {WD-CS*4, RS*1+XC4+USHF}, {WD-CS*2, RS*1+XC2+USHF}, {WD-CS*0, RS*1+XC0+USHF},
         {WD-CS*0, RS*3+XC0+USHF}, {WD-CS*2, RS*3+XC2+USHF}, {WD-CS*4, RS*3+XC4+USHF},
-        {WD-CS*2-8, RS*4+XC2+4}, {WD-CS*5+T2X+5, RS*4+XC5+T2Y-12},
+        {WD-(CS*2-8), RS*4+XC2+4}, {WD-(CS*5+T2X+5), RS*4+XC5+T2Y-12},
         // right side matrix
-        {WD-CS*5 + T2X, RS*4+XC5 + T2Y}, 
-        {WD-CS*5 + T1X, RS*4+XC5 + T1Y}, {WD-CS*5, RS*3+XC5}, {WD-CS*5, RS*2+XC5}, {WD-CS*5, RS*1+XC5}, {WD-CS*5, RS*0+XC5},
-                    {WD-CS*4, RS*0+XC4}, {WD-CS*4, RS*1+XC4}, {WD-CS*4, RS*2+XC4}, {WD-CS*4, RS*3+XC4}, {WD-CS*4, RS*4+XC4},
-                    {WD-CS*3, RS*4+XC3}, {WD-CS*3, RS*3+XC3}, {WD-CS*3, RS*2+XC3}, {WD-CS*3, RS*1+XC3}, {WD-CS*3, RS*0+XC3},
-                    {WD-CS*2, RS*0+XC2}, {WD-CS*2, RS*1+XC2}, {WD-CS*2, RS*2+XC2}, {WD-CS*2, RS*3+XC2}, {WD-CS*2, RS*4+XC2},
-                    {WD-CS*1, RS*3+XC1}, {WD-CS*1, RS*2+XC1}, {WD-CS*1, RS*1+XC1}, {WD-CS*1, RS*0+XC1},
-                    {WD-CS*0, RS*0+XC0}, {WD-CS*0, RS*1+XC0}, {WD-CS*0, RS*2+XC0}, {WD-CS*0, RS*3+XC0},
+        {WD-(CS*5 + T2X), RS*4+XC5 + T2Y}, 
+        {WD-(CS*5 + T1X), RS*4+XC5 + T1Y}, {WD-CS*5, RS*3+XC5}, {WD-CS*5, RS*2+XC5}, {WD-CS*5, RS*1+XC5}, {WD-CS*5, RS*0+XC5},
+                      {WD-CS*4, RS*0+XC4}, {WD-CS*4, RS*1+XC4}, {WD-CS*4, RS*2+XC4}, {WD-CS*4, RS*3+XC4}, {WD-CS*4, RS*4+XC4},
+                      {WD-CS*3, RS*4+XC3}, {WD-CS*3, RS*3+XC3}, {WD-CS*3, RS*2+XC3}, {WD-CS*3, RS*1+XC3}, {WD-CS*3, RS*0+XC3},
+                      {WD-CS*2, RS*0+XC2}, {WD-CS*2, RS*1+XC2}, {WD-CS*2, RS*2+XC2}, {WD-CS*2, RS*3+XC2}, {WD-CS*2, RS*4+XC2},
+                      {WD-CS*1, RS*3+XC1}, {WD-CS*1, RS*2+XC1}, {WD-CS*1, RS*1+XC1}, {WD-CS*1, RS*0+XC1},
+                      {WD-CS*0, RS*0+XC0}, {WD-CS*0, RS*1+XC0}, {WD-CS*0, RS*2+XC0}, {WD-CS*0, RS*3+XC0},
     },
     {
         LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
@@ -170,9 +168,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT_via(
   SHF_SPC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                           XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-  QK_GESC,  KC_Q   ,  KC_W   ,  KC_E   ,  KC_R   ,  KC_T   ,  KC_VOLU,       KC_PGUP,  KC_Y   ,  KC_U   ,  KC_I   ,  KC_O   ,  KC_P   ,  KC_BSPC,
-  KC_TAB,   KC_A   ,  KC_S   ,  KC_D   ,  KC_F   ,  KC_G   ,  KC_MUTE,       KC_MPLY,  KC_H   ,  KC_J   ,  KC_K   ,  KC_L   ,  KC_SCLN,  KC_QUOT,
-  KC_LSFT,  KC_Z   ,  KC_X   ,  KC_C   ,  KC_V   ,  KC_B   ,  KC_VOLD,       KC_PGDN,  KC_N   ,  KC_M   ,  KC_COMM,  KC_DOT ,  KC_SLSH,  KC_RSFT,
+  KC_ESC,   KC_Q   ,  KC_W   ,  KC_E   ,  KC_R   ,  KC_T   ,  KC_PGUP,       KC_VOLU,  KC_Y   ,  KC_U   ,  KC_I   ,  KC_O   ,  KC_P   ,  KC_BSPC,
+  KC_TAB,   KC_A   ,  KC_S   ,  KC_D   ,  KC_F   ,  KC_G   ,  KC_MPLY,       KC_MUTE,  KC_H   ,  KC_J   ,  KC_K   ,  KC_L   ,  KC_SCLN,  KC_QUOT,
+  KC_LSFT,  KC_Z   ,  KC_X   ,  KC_C   ,  KC_V   ,  KC_B   ,  KC_PGDN,       KC_VOLD,  KC_N   ,  KC_M   ,  KC_COMM,  KC_DOT ,  KC_SLSH,  KC_RSFT,
                       KC_LCTRL, KC_LALT,  KC_LGUI,  LO_ENT ,  KC_BSPC,       NAV_MIN,  RA_SPC ,  KC_LSFT,  XXXXXXX,  XXXXXXX
 ),
 
@@ -204,15 +202,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NAV] = LAYOUT_via(
   _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-  _______,  _______,  _______,  KC_MS_U,  _______,  _______,  _______,       _______,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,
-  _______,  _______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  _______,  _______,       _______,  KC_ACL2,  KC_LEFT,  KC_DOWN,  KC_RGHT,  _______,  _______,
-  _______,  _______,  _______,  _______,  _______,  _______,  _______,       _______,  KC_ACL0,  KC_BTN1,  KC_BTN3,  KC_BTN2,  _______,  _______,
+  _______,  _______,  _______,  KC_MS_U,  _______,  _______,  _______,       _______,  KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   _______,  _______,
+  _______,  _______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  _______,  _______,       _______,  KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RGHT,  _______,  _______,
+  _______,  _______,  _______,  _______,  _______,  _______,  _______,       _______,  KC_ACL0,  KC_BTN1,  KC_BTN3,  KC_BTN2,  KC_ACL2,  _______,
                       _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
 ),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 
@@ -222,14 +220,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if ((keycode >= SAFE_RANGE) && !(record->event.pressed)) {
         return false;
     }
-
-    // switch (keycode) {
-    //     case CYCLE:
-    //         set_single_persistent_default_layer(0);
-    //         // set_single_persistent_default_layer((1+get_highest_layer(default_layer_state)) % BASE_LAYERS);
-    //         break;
-    // }
-
     // this uses less memory than returning in each case.
     return keycode < SAFE_RANGE;
 };
