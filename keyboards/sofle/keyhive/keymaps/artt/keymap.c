@@ -61,6 +61,21 @@ enum custom_layers {
 
 #include "sofle.h"
 
+#define CS 18
+#define RS 18
+#define XC0 0
+#define XC1 0
+#define XC2 -3
+#define XC3 -5
+#define XC4 -3
+#define XC5 -2
+#define T1X 4
+#define T1Y 4
+#define T2X 15 // shift from T1
+#define T2Y 6  // shift from T1
+#define WD ((CS*5+T1X+T2X)*2+20)
+#define USHF -5
+
 #ifdef RGB_MATRIX_ENABLE
 
 led_config_t g_led_config = {
@@ -70,43 +85,47 @@ led_config_t g_led_config = {
         {      35,  30,  26,  21,  16,  11,  NO_LED },
         {      36,  29,  27,  20,  17,  10,  NO_LED },
         {  NO_LED,  28,  19,  18,   9,   8,  NO_LED },
-        {      70,  69,  60,  59,  51,  50,  NO_LED},
-        {      71,  68,  61,  58,  52,  49,  NO_LED},
-        {      72,  67,  62,  57,  53,  48,  NO_LED},
-        {      73,  66,  63,  56,  54,  47,  NO_LED},
-        {      65,  64,  55,  46,  45,  NO_LED,  NO_LED }
+        {      70,  69,  61,  60,  51,  50,  NO_LED},
+        {      71,  68,  62,  59,  52,  49,  NO_LED},
+        {      72,  67,  63,  58,  53,  48,  NO_LED},
+        {      73,  66,  64,  57,  54,  47,  NO_LED},
+        {      65,  56,  55,  46,  45,  NO_LED,  NO_LED }
     },
     {
-       // Left side underglow
-        {96, 40}, {16, 20}, {48, 10}, {80, 18}, {88, 60}, {56, 57}, {24,60},
-        // Left side Matrix
-        {32, 57}, { 0, 48}, { 0, 36}, { 0, 24}, { 0, 12},
-        {16, 12}, {16, 24}, {16, 36}, {16, 48}, {48, 55},
-        {64, 57}, {32, 45}, {32, 33}, {32, 21}, {32,  9},
-        {48,  7}, {48, 19}, {48, 31}, {48, 43}, {80, 59},
-        {96, 64}, {64, 45}, {64, 33}, {64, 21}, {64,  9},
-        {80, 10}, {80, 22}, {80, 34}, {80, 47},
-
-
-        // Right side underglow
-        {128, 40}, {208, 20}, {176, 10}, {144, 18}, {136, 60}, {168, 57}, {200,60},
-        // Right side Matrix
-        {192, 57}, {224, 48}, {224, 36}, {224, 24}, {224, 12},
-        {208, 12}, {208, 24}, {208, 36}, {208, 48}, {176, 55},
-        {160, 57}, {192, 45}, {192, 33}, {192, 21}, {192,  9},
-        {176,  7}, {176, 19}, {176, 31}, {176, 43}, {144, 59},
-        {128, 64}, {160, 45}, {160, 33}, {160, 21}, {160,  9},
-        {144, 10}, {144, 22}, {144, 34}, {144, 47},
+        // left side underglow
+        {CS*4, RS*1+XC4+USHF}, {CS*2, RS*1+XC2+USHF}, {CS*0, RS*1+XC0+USHF},
+        {CS*0, RS*3+XC0+USHF}, {CS*2, RS*3+XC2+USHF}, {CS*4, RS*3+XC4+USHF},
+        {CS*2-8, RS*4+XC2+4}, {CS*5+T2X+5, RS*4+XC5+T2Y-12},
+        // left side matrix
+        {CS*5 + T2X, RS*4+XC5 + T2Y}, 
+        {CS*5 + T1X, RS*4+XC5 + T1Y}, {CS*5, RS*3+XC5}, {CS*5, RS*2+XC5}, {CS*5, RS*1+XC5}, {CS*5, RS*0+XC5},
+                    {CS*4, RS*0+XC4}, {CS*4, RS*1+XC4}, {CS*4, RS*2+XC4}, {CS*4, RS*3+XC4}, {CS*4, RS*4+XC4},
+                    {CS*3, RS*4+XC3}, {CS*3, RS*3+XC3}, {CS*3, RS*2+XC3}, {CS*3, RS*1+XC3}, {CS*3, RS*0+XC3},
+                    {CS*2, RS*0+XC2}, {CS*2, RS*1+XC2}, {CS*2, RS*2+XC2}, {CS*2, RS*3+XC2}, {CS*2, RS*4+XC2},
+                    {CS*1, RS*3+XC1}, {CS*1, RS*2+XC1}, {CS*1, RS*1+XC1}, {CS*1, RS*0+XC1},
+                    {CS*0, RS*0+XC0}, {CS*0, RS*1+XC0}, {CS*0, RS*2+XC0}, {CS*0, RS*3+XC0},
+        // right side underglow
+        {WD-CS*4, RS*1+XC4+USHF}, {WD-CS*2, RS*1+XC2+USHF}, {WD-CS*0, RS*1+XC0+USHF},
+        {WD-CS*0, RS*3+XC0+USHF}, {WD-CS*2, RS*3+XC2+USHF}, {WD-CS*4, RS*3+XC4+USHF},
+        {WD-CS*2-8, RS*4+XC2+4}, {WD-CS*5+T2X+5, RS*4+XC5+T2Y-12},
+        // right side matrix
+        {WD-CS*5 + T2X, RS*4+XC5 + T2Y}, 
+        {WD-CS*5 + T1X, RS*4+XC5 + T1Y}, {WD-CS*5, RS*3+XC5}, {WD-CS*5, RS*2+XC5}, {WD-CS*5, RS*1+XC5}, {WD-CS*5, RS*0+XC5},
+                    {WD-CS*4, RS*0+XC4}, {WD-CS*4, RS*1+XC4}, {WD-CS*4, RS*2+XC4}, {WD-CS*4, RS*3+XC4}, {WD-CS*4, RS*4+XC4},
+                    {WD-CS*3, RS*4+XC3}, {WD-CS*3, RS*3+XC3}, {WD-CS*3, RS*2+XC3}, {WD-CS*3, RS*1+XC3}, {WD-CS*3, RS*0+XC3},
+                    {WD-CS*2, RS*0+XC2}, {WD-CS*2, RS*1+XC2}, {WD-CS*2, RS*2+XC2}, {WD-CS*2, RS*3+XC2}, {WD-CS*2, RS*4+XC2},
+                    {WD-CS*1, RS*3+XC1}, {WD-CS*1, RS*2+XC1}, {WD-CS*1, RS*1+XC1}, {WD-CS*1, RS*0+XC1},
+                    {WD-CS*0, RS*0+XC0}, {WD-CS*0, RS*1+XC0}, {WD-CS*0, RS*2+XC0}, {WD-CS*0, RS*3+XC0},
     },
     {
-        LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
-        LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
         LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
@@ -216,5 +235,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 void matrix_init_user(void) {
+    // turn off 
     set_bit_c_LED(LED_OFF);
 }
