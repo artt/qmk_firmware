@@ -39,11 +39,11 @@ enum custom_layers {
 
 // Extra keys are added for rotary encoder support in VIA
 #define LAYOUT_via( \
-    LA1, LA2, LA3, LA4, LA5, LA6,           RA6, RA5, RA4, RA3, RA2, RA1, \
-    LB1, LB2, LB3, LB4, LB5, LB6, LB7, RB7, RB6, RB5, RB4, RB3, RB2, RB1, \
-    LC1, LC2, LC3, LC4, LC5, LC6, LE1, RE6, RC6, RC5, RC4, RC3, RC2, RC1, \
-    LD1, LD2, LD3, LD4, LD5, LD6, LD7, RD7, RD6, RD5, RD4, RD3, RD2, RD1, \
-              LE2, LE3, LE4, LE5, LE6, RE5, RE4, RE3, RE2, RE1 \
+    LA1, LA2, LA3, LA4, LA5, LA6,             RA6, RA5, RA4, RA3, RA2, RA1, \
+    LB1, LB2, LB3, LB4, LB5, LB6, LB7,   RB7, RB6, RB5, RB4, RB3, RB2, RB1, \
+    LC1, LC2, LC3, LC4, LC5, LC6, LE1,   RE6, RC6, RC5, RC4, RC3, RC2, RC1, \
+    LD1, LD2, LD3, LD4, LD5, LD6, LD7,   RD7, RD6, RD5, RD4, RD3, RD2, RD1, \
+              LE2, LE3, LE4, LE5, LE6,   RE5, RE4, RE3, RE2, RE1 \
     ) \
     { \
         { LA1, LA2, LA3, LA4, LA5, LA6, KC_NO }, \
@@ -57,6 +57,66 @@ enum custom_layers {
         { RD1, RD2, RD3, RD4, RD5, RD6, RD7   }, \
         { RE1, RE2, RE3, RE4, RE5, RE6, KC_NO } \
     }
+
+
+#include "sofle.h"
+
+#ifdef RGB_MATRIX_ENABLE
+
+led_config_t g_led_config = {
+    {
+        {      33,  32,  24,  23,  14,  13,  NO_LED },
+        {      34,  31,  25,  22,  15,  12,  NO_LED },
+        {      35,  30,  26,  21,  16,  11,  NO_LED },
+        {      36,  29,  27,  20,  17,  10,  NO_LED },
+        {  NO_LED,  28,  19,  18,   9,   8,  NO_LED },
+        {      70,  69,  60,  59,  51,  50,  NO_LED},
+        {      71,  68,  61,  58,  52,  49,  NO_LED},
+        {      72,  67,  62,  57,  53,  48,  NO_LED},
+        {      73,  66,  63,  56,  54,  47,  NO_LED},
+        {      65,  64,  55,  46,  45,  NO_LED,  NO_LED }
+    },
+    {
+       // Left side underglow
+        {96, 40}, {16, 20}, {48, 10}, {80, 18}, {88, 60}, {56, 57}, {24,60},
+        // Left side Matrix
+        {32, 57}, { 0, 48}, { 0, 36}, { 0, 24}, { 0, 12},
+        {16, 12}, {16, 24}, {16, 36}, {16, 48}, {48, 55},
+        {64, 57}, {32, 45}, {32, 33}, {32, 21}, {32,  9},
+        {48,  7}, {48, 19}, {48, 31}, {48, 43}, {80, 59},
+        {96, 64}, {64, 45}, {64, 33}, {64, 21}, {64,  9},
+        {80, 10}, {80, 22}, {80, 34}, {80, 47},
+
+
+        // Right side underglow
+        {128, 40}, {208, 20}, {176, 10}, {144, 18}, {136, 60}, {168, 57}, {200,60},
+        // Right side Matrix
+        {192, 57}, {224, 48}, {224, 36}, {224, 24}, {224, 12},
+        {208, 12}, {208, 24}, {208, 36}, {208, 48}, {176, 55},
+        {160, 57}, {192, 45}, {192, 33}, {192, 21}, {192,  9},
+        {176,  7}, {176, 19}, {176, 31}, {176, 43}, {144, 59},
+        {128, 64}, {160, 45}, {160, 33}, {160, 21}, {160,  9},
+        {144, 10}, {144, 22}, {144, 34}, {144, 47},
+    },
+    {
+        LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_NONE, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
+        LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT
+    }
+};
+#endif
+
 
 #define LO_ENT LT(_LOWER, KC_ENT)
 // #define RA_MIN LT(_RAISE, KC_MINUS)
