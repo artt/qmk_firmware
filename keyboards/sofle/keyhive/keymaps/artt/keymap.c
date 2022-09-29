@@ -61,12 +61,12 @@ enum custom_layers {
 
 #define CS 18
 #define RS 18
-#define XC0 0
-#define XC1 0
-#define XC2 -3
-#define XC3 -5
-#define XC4 -3
-#define XC5 -2
+#define XC0 5
+#define XC1 5
+#define XC2 2
+#define XC3 0
+#define XC4 2
+#define XC5 3
 #define T1X 4
 #define T1Y 4
 #define T2X 15 // shift from T1
