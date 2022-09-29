@@ -138,12 +138,10 @@ led_config_t g_led_config = {
 #define LO_ENT LT(_LOWER, KC_ENT)
 #define NAV_MIN LT(_NAV, KC_MINUS)
 #define RA_SPC LT(_RAISE, KC_SPC)
-#define SHF_BKSP MT(MOD_LSFT, KC_BSPC)
+#define SHF_BSPC SFT_T(KC_BSPC)
 
-#define GUI_ENT GUI_T(KC_ENT)
-#define SHF_SPC SFT_T(KC_SPC)
-#define CTLLBRK LGUI(KC_LBRACKET)
-#define CTLRBRK LGUI(KC_RBRACKET)
+#define GUI_LBRK LGUI(KC_LBRACKET)
+#define GUI_RBRK LGUI(KC_RBRACKET)
 #define LBRK KC_LBRACKET
 #define RBRK KC_RBRACKET
 
@@ -166,18 +164,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_QWERTY] = LAYOUT_via(
-  MT(MOD_LSFT, KC_BSPC),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                           XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                           XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
   KC_ESC,   KC_Q   ,  KC_W   ,  KC_E   ,  KC_R   ,  KC_T   ,  KC_PGDN,       KC_VOLD,  KC_Y   ,  KC_U   ,  KC_I   ,  KC_O   ,  KC_P   ,  KC_BSPC,
   KC_TAB,   KC_A   ,  KC_S   ,  KC_D   ,  KC_F   ,  KC_G   ,  KC_MPLY,       KC_MUTE,  KC_H   ,  KC_J   ,  KC_K   ,  KC_L   ,  KC_SCLN,  KC_QUOT,
   KC_LSFT,  KC_Z   ,  KC_X   ,  KC_C   ,  KC_V   ,  KC_B   ,  KC_PGUP,       KC_VOLU,  KC_N   ,  KC_M   ,  KC_COMM,  KC_DOT ,  KC_SLSH,  KC_RSFT,
-                      KC_LCTRL, KC_LALT,  KC_LGUI,  LO_ENT ,  KC_BSPC,      NAV_MIN,  RA_SPC ,  KC_LSFT,  XXXXXXX,  XXXXXXX
+                      KC_LCTRL, KC_LALT,  KC_LGUI,  LO_ENT ,  SHF_BSPC,      NAV_MIN,  RA_SPC ,  SHF_BSPC, XXXXXXX,  XXXXXXX
 ),
-
-// still need to do cmd+bkspace on thumb
 
 [_LOWER] = LAYOUT_via(
   _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-  KC_GRV,   CTLLBRK,  CTLRBRK,  LBRK,     RBRK,     _______,  _______,       _______,  _______,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_PAST,  KC_PSLS,
+  KC_GRV,   GUI_LBRK, GUI_RBRK, LBRK,     RBRK,     _______,  _______,       _______,  _______,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_PAST,  KC_PSLS,
   KC_DEL,   KC_LABK,  KC_RABK,  KC_LPRN,  KC_RPRN,  _______,  _______,       _______,  _______,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_PPLS,  KC_PMNS,
   _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  _______,  _______,       _______,  _______,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_EQL,   _______,
                       _______,  _______,  _______,  _______,  _______,       _______,  _______,  KC_KP_0,  KC_PCMM,  KC_PDOT
@@ -213,15 +209,15 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 
-// Custom keycode handling.
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // handling this once instead of in each keycode uses less program memory.
-    if ((keycode >= SAFE_RANGE) && !(record->event.pressed)) {
-        return false;
-    }
-    // this uses less memory than returning in each case.
-    return keycode < SAFE_RANGE;
-};
+// // Custom keycode handling.
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     // handling this once instead of in each keycode uses less program memory.
+//     if ((keycode >= SAFE_RANGE) && !(record->event.pressed)) {
+//         return false;
+//     }
+//     // this uses less memory than returning in each case.
+//     return keycode < SAFE_RANGE;
+// };
 
 void matrix_init_user(void) {
     // turn off 
