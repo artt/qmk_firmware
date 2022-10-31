@@ -54,7 +54,7 @@ for more options.
 
 #define RGB_MATRIX_SPLIT {37,37}
 #define SPLIT_TRANSPORT_MIRROR
-
+#define SPLIT_LAYER_STATE_ENABLE
 
 #define RGB_MATRIX_KEYPRESSES // reacts to keypresses
 // #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)

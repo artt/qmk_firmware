@@ -146,6 +146,7 @@ led_config_t g_led_config = {
 #define GUI_RBRK LGUI(KC_RBRACKET)
 #define LBRK KC_LBRACKET
 #define RBRK KC_RBRACKET
+// #define GUI_CAPS LGUI(KC_CAPS)
 
 //Default keymap. This can be changed in Via. Use oled.c to change beavior that Via cannot change.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -166,48 +167,124 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_QWERTY] = LAYOUT_via(
-  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                           XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-  QK_GESC,  KC_Q   ,  KC_W   ,  KC_E   ,  KC_R   ,  KC_T   ,  KC_PGDN,       KC_VOLD,  KC_Y   ,  KC_U   ,  KC_I   ,  KC_O   ,  KC_P   ,  KC_BSPC,
-  KC_TAB,   KC_A   ,  KC_S   ,  KC_D   ,  KC_F   ,  KC_G   ,  KC_MPLY,       KC_MUTE,  KC_H   ,  KC_J   ,  KC_K   ,  KC_L   ,  KC_SCLN,  KC_QUOT,
-  KC_LALT,  KC_Z   ,  KC_X   ,  KC_C   ,  KC_V   ,  KC_B   ,  KC_PGUP,       KC_VOLU,  KC_N   ,  KC_M   ,  KC_COMM,  KC_DOT ,  KC_SLSH,  KC_LCTRL,
-                      XXXXXXX,  XXXXXXX,  KC_LGUI,  LO_ENT ,  SHF_BSPC,      SHF_BSPC, RA_SPC ,  NAV_MIN,  XXXXXXX,  XXXXXXX
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                           XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    QK_GESC,  KC_Q   ,  KC_W   ,  KC_E   ,  KC_R   ,  KC_T   ,  KC_PGDN,       KC_VOLD,  KC_Y   ,  KC_U   ,  KC_I   ,  KC_O   ,  KC_P   ,  KC_CAPS,
+    KC_TAB,   KC_A   ,  KC_S   ,  KC_D   ,  KC_F   ,  KC_G   ,  KC_MPLY,       KC_MUTE,  KC_H   ,  KC_J   ,  KC_K   ,  KC_L   ,  KC_SCLN,  KC_QUOT,
+    KC_LALT,  KC_Z   ,  KC_X   ,  KC_C   ,  KC_V   ,  KC_B   ,  KC_PGUP,       KC_VOLU,  KC_N   ,  KC_M   ,  KC_COMM,  KC_DOT ,  KC_SLSH,  KC_LCTRL,
+                        XXXXXXX,  KC_LGUI,  LO_ENT ,  SHF_BSPC, XXXXXXX,       XXXXXXX,  SHF_BSPC, RA_SPC ,  NAV_MIN,   XXXXXXX
 ),
 
 [_LOWER] = LAYOUT_via(
-  _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-  KC_GRV,   GUI_LBRK, GUI_RBRK, LBRK,     RBRK,     _______,  _______,       _______,  KC_PSLS,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_PAST,  _______,
-  KC_DEL,   KC_LABK,  KC_RABK,  KC_LPRN,  KC_RPRN,  _______,  _______,       _______,  KC_PMNS,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_PPLS,  _______,
-  _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  _______,  _______,       _______,  KC_PDOT,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_EQL,   _______,
-                      _______,  _______,  _______,  _______,  _______,       _______,  _______,  KC_KP_0,  _______,  _______
+    _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
+    KC_GRV,   GUI_LBRK, GUI_RBRK, LBRK,     RBRK,     _______,  _______,       _______,  KC_PSLS,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_PAST,  _______,
+    KC_DEL,   KC_LABK,  KC_RABK,  KC_LPRN,  KC_RPRN,  _______,  _______,       _______,  KC_PMNS,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_PPLS,  _______,
+    _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  _______,  _______,       _______,  KC_PDOT,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_PEQL,  _______,
+                        _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  KC_KP_0,  _______
 ),
 
 [_RAISE] = LAYOUT_via(
-  _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-  KC_TILD,  KC_F1  ,  KC_F2  ,  KC_F3  ,  KC_F4  ,  _______,  _______,       _______,  _______,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,
-  KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,       _______,  KC_CIRC,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  KC_BSLS,
-  _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,       _______,  _______,  _______,  _______,  _______,  _______,  _______,
-                      _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
+    _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
+    KC_TILD,  KC_F1  ,  KC_F2  ,  KC_F3  ,  KC_F4  ,  _______,  _______,       _______,  _______,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,
+    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,       _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  KC_BSLS,
+    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,       _______,  _______,  _______,  _______,  _______,  _______,  _______,
+                        _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
 ),
 
 [_ADJUST] = LAYOUT_via(
-  _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-  RESET,    _______,  DM_REC1,  DM_REC2,  DM_RSTP,  _______,  _______,       _______,  RGB_MOD,  RGB_HUI,  RGB_SAI,  RGB_VAI,  RGB_SPI,  _______,
-  _______,  _______,  DM_PLY1,  DM_PLY2,  _______,  _______,  _______,       _______,  RGB_RMOD, RGB_HUD,  RGB_SAD,  RGB_VAD,  RGB_SPD,  _______,
-  _______,  _______,  _______,  _______,  _______,  _______,  _______,       _______,  RGB_TOG,  _______,  _______,  _______,  _______,  _______,
-                      _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
+    _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
+    RESET,    _______,  DM_REC1,  DM_REC2,  DM_RSTP,  _______,  _______,       _______,  RGB_MOD,  RGB_HUI,  RGB_SAI,  RGB_VAI,  RGB_SPI,  _______,
+    _______,  _______,  DM_PLY1,  DM_PLY2,  _______,  _______,  _______,       _______,  RGB_RMOD, RGB_HUD,  RGB_SAD,  RGB_VAD,  RGB_SPD,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,       _______,  RGB_TOG,  _______,  _______,  _______,  _______,  _______,
+                        _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
 ),
 
 [_NAV] = LAYOUT_via(
-  _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-  _______,  _______,  _______,  KC_MS_U,  _______,  _______,  _______,       _______,  KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   _______,  _______,
-  _______,  _______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  _______,  _______,       _______,  KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RGHT,  _______,  _______,
-  _______,  _______,  _______,  _______,  _______,  _______,  _______,       _______,  KC_ACL0,  KC_BTN1,  KC_BTN3,  KC_BTN2,  KC_ACL2,  _______,
-                      _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
+    _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  KC_MS_U,  _______,  _______,  _______,       _______,  _______,  KC_HOME,  KC_UP,    KC_END,   KC_PGUP,  _______,
+    _______,  _______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  _______,  _______,       _______,  KC_ACL2,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PGDN,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,       _______,  KC_ACL0,  KC_BTN1,  KC_BTN3,  KC_BTN2,  _______,  _______,
+                        _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
 ),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+
+extern rgb_config_t rgb_matrix_config;
+
+void keyboard_post_init_user(void) {
+    rgb_matrix_enable();
+}
+
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (get_highest_layer(layer_state) > 0) {
+        uint8_t layer = get_highest_layer(layer_state);
+        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+                uint8_t index = g_led_config.matrix_co[row][col];
+                if (index >= led_min && index <= led_max && index != NO_LED) {
+                    uint16_t kc = keymap_key_to_keycode(layer, (keypos_t){col,row});
+                    uint8_t r = 0;
+                    uint8_t g = 0;
+                    uint8_t b = 0;
+                    if (kc == KC_LABK || kc == KC_RABK) {   // <, >
+                        r = 52; g = 112; b = 255;
+                    }
+                    else if (kc == LBRK || kc == RBRK) {    // [, ]
+                        r = 255; g = 245; b = 0;
+                    }
+                    else if (kc == KC_LPRN || kc == KC_RPRN) {    // (, )
+                        r = 19; g = 255; b = 176;
+                    }
+                    else if (kc == KC_LCBR || kc == KC_RCBR) {    // {, }
+                        r = 197; g = 64; b = 255;
+                    }
+                    else if (kc >= KC_P1 && kc <= KC_P0) {    // numpad numbers
+                        r = 255; g = 255; b = 255;
+                    }
+                    else if (kc >= KC_NUM && kc <= KC_PEQL) {    // numpad symbols
+                        r = 32; g = 32; b = 32;
+                    }
+                    else if (kc >= KC_F1 && kc <= KC_F12) {    // F1-F12
+                        r = 32; g = 32; b = 32;
+                    }
+                    else if (kc == RESET) {
+                        r = 255; g = 0; b = 0;
+                    }
+                    else if (kc == DM_REC1 || kc == DM_REC2) {  // macro record
+                        r = 235; g = 204; b = 38;
+                    }
+                    else if (kc == DM_RSTP) {  // macro record stop
+                        r = 204; g = 29; b = 29;
+                    }
+                    else if (kc == DM_PLY1 || kc == DM_PLY2) {  // macro play
+                        r = 24; g = 228; b = 132;
+                    }
+                    else if (kc >= RGB_MOD && kc <= RGB_SPD) {  // rgb adjustments
+                        if (kc % 2) {
+                            r = 151; g = 204; b = 29;
+                        }
+                        else {
+                            r = 230; g = 122; b = 255;
+                        }
+                    }
+                    else if (kc >= KC_MS_U && kc <= KC_ACL2) {  // mouse controls
+                        r = 23; g = 184; b = 237;
+                    }
+                    else if (kc >= KC_RGHT && kc <= KC_UP) {  // arrows
+                        r = 66; g = 255; b = 0;
+                    }
+                    else if (kc > KC_TRNS) {
+                        r = 255; g = 255; b = 255;
+                    }
+                    rgb_matrix_set_color( index, f * r, f * g, f * b );
+                }
+            }
+        }
+    }
 }
 
 
