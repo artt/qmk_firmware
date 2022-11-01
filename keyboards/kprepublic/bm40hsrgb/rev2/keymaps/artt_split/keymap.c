@@ -64,8 +64,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_ortho_4x12_1x2uC(
     KC_TILD,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    _______,  _______,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  
-    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  KC_BSLS,      
-    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  
+    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  _______,      
+    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,  _______,  _______,  _______,  KC_BSLS,  _______,  
     _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,  _______,  _______
   ),
 
@@ -95,56 +95,86 @@ void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
 
-const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    // [0] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
-    [1] = { {0,0,0}, {0,0,0}, {0,0,0}, {41,255,255}, {41,255,255}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {159,203,255}, {159,203,255}, {201,191,255}, {201,191,255}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {114,236,255}, {114,236,255}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0} },
-    [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
-    [3] = { {0,255,255}, {0,0,0}, {36,213,235}, {36,213,235}, {0,218,204}, {0,0,0}, {56,218,204}, {56,218,204}, {56,218,204}, {56,218,204}, {56,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {139,230,246}, {139,230,246}, {0,0,0}, {0,0,0}, {206,132,255}, {206,132,255}, {206,132,255}, {206,132,255}, {206,132,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,255} },
-    [4] = { {0,0,0}, {0,0,0}, {0,0,0}, {139,230,237}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {74,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {139,230,237}, {139,230,237}, {139,230,237}, {0,0,0}, {139,230,237}, {74,255,255}, {74,255,255}, {74,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {139,230,237}, {139,230,237}, {139,230,237}, {139,230,237}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
-
-};
-
-void set_layer_color(int layer) {
-  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-    HSV hsv = {
-      .h = pgm_read_byte(&ledmap[layer][i][0]),
-      .s = pgm_read_byte(&ledmap[layer][i][1]),
-      .v = pgm_read_byte(&ledmap[layer][i][2]),
-    };
-    if (!hsv.h && !hsv.s && !hsv.v) {
-        rgb_matrix_set_color( i, 0, 0, 0 );
-    } else {
-        RGB rgb = hsv_to_rgb( hsv );
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    uint8_t layer = get_highest_layer(layer_state);
+    if (layer > 0) {
         float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
+        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+                uint8_t index = g_led_config.matrix_co[row][col];
+                if (index >= led_min && index <= led_max && index != NO_LED) {
+                    uint16_t kc = keymap_key_to_keycode(layer, (keypos_t){col,row});
+                    uint8_t r = 0;
+                    uint8_t g = 0;
+                    uint8_t b = 0;
+                    if (kc == KC_LABK || kc == KC_RABK) {   // <, >
+                        r = 52; g = 112; b = 255;
+                    }
+                    else if (kc == LBRK || kc == RBRK) {    // [, ]
+                        r = 255; g = 245; b = 0;
+                    }
+                    else if (kc == KC_LPRN || kc == KC_RPRN) {    // (, )
+                        r = 19; g = 255; b = 176;
+                    }
+                    else if (kc == KC_LCBR || kc == KC_RCBR) {    // {, }
+                        r = 197; g = 64; b = 255;
+                    }
+                    else if (kc >= KC_P1 && kc <= KC_P0) {    // numpad numbers
+                        r = 255; g = 255; b = 255;
+                    }
+                    else if (kc >= KC_NUM && kc <= KC_PEQL) {    // numpad symbols
+                        r = 32; g = 32; b = 32;
+                    }
+                    else if (kc >= KC_F1 && kc <= KC_F12) {    // F1-F12
+                        r = 32; g = 32; b = 32;
+                    }
+                    else if (kc == RESET) {
+                        r = 255; g = 0; b = 0;
+                    }
+                    else if (kc == DM_REC1 || kc == DM_REC2) {  // macro record
+                        r = 235; g = 204; b = 38;
+                    }
+                    else if (kc == DM_RSTP) {  // macro record stop
+                        r = 204; g = 29; b = 29;
+                    }
+                    else if (kc == DM_PLY1 || kc == DM_PLY2) {  // macro play
+                        r = 24; g = 228; b = 132;
+                    }
+                    else if (kc >= RGB_MOD && kc <= RGB_SPD) {  // rgb adjustments
+                        if (kc % 2) {
+                            r = 151; g = 204; b = 29;
+                        }
+                        else {
+                            r = 230; g = 122; b = 255;
+                        }
+                    }
+                    else if (kc >= KC_MS_U && kc <= KC_ACL2) {  // mouse controls
+                        r = 23; g = 184; b = 237;
+                    }
+                    else if (kc >= KC_RGHT && kc <= KC_UP) {  // arrows
+                        r = 66; g = 255; b = 0;
+                    }
+                    else if (kc > KC_TRNS) {
+                        r = 255; g = 255; b = 255;
+                    }
+                    rgb_matrix_set_color( index, f * r, f * g, f * b );
+                }
+            }
+        }
     }
-  }
-}
-
-void rgb_matrix_indicators_user(void) {
-//   if (keyboard_config.disable_layer_led) { return; }
-  switch (biton32(layer_state)) {
-    // case 0:
-    //   set_layer_color(0);
-    //   break;
-    case 1:
-      set_layer_color(1);
-      break;
-    case 2:
-      set_layer_color(2);
-      break;
-    case 3:
-      set_layer_color(3);
-      break;
-    case 4:
-      set_layer_color(4);
-      break;
-    default:
-      if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-        rgb_matrix_set_color_all(0, 0, 0);
-      }
-      break;
-  }
+    else  if (layer == 0) {
+        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+                uint8_t index = g_led_config.matrix_co[row][col];
+                if (index >= led_min && index <= led_max && index != NO_LED) {
+                    uint16_t kc = keymap_key_to_keycode(layer, (keypos_t){col,row});
+                    if (kc == XXXXXXX) {
+                        rgb_matrix_set_color( index, 0, 0, 0 );
+                    }
+                }
+            }
+        }
+    }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

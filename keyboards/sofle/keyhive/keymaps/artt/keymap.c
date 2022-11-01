@@ -185,8 +185,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT_via(
     _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
     KC_TILD,  KC_F1  ,  KC_F2  ,  KC_F3  ,  KC_F4  ,  _______,  _______,       _______,  _______,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,
-    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,       _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  KC_BSLS,
-    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,       _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,       _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  _______,
+    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,       _______,  _______,  _______,  _______,  _______,  KC_BSLS,  _______,
                         _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
 ),
 
@@ -211,7 +211,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-
 extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
@@ -219,8 +218,8 @@ void keyboard_post_init_user(void) {
 }
 
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    if (get_highest_layer(layer_state) > 0) {
-        uint8_t layer = get_highest_layer(layer_state);
+    uint8_t layer = get_highest_layer(layer_state);
+    if (layer > 0) {
         float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
         for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
             for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
@@ -281,6 +280,19 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                         r = 255; g = 255; b = 255;
                     }
                     rgb_matrix_set_color( index, f * r, f * g, f * b );
+                }
+            }
+        }
+    }
+    else  if (layer == 0) {
+        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+                uint8_t index = g_led_config.matrix_co[row][col];
+                if (index >= led_min && index <= led_max && index != NO_LED) {
+                    uint16_t kc = keymap_key_to_keycode(layer, (keypos_t){col,row});
+                    if (kc == XXXXXXX) {
+                        rgb_matrix_set_color( index, 0, 0, 0 );
+                    }
                 }
             }
         }
