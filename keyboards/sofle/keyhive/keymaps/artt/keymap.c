@@ -178,15 +178,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
     KC_GRV,   GUI_LBRK, GUI_RBRK, LBRK,     RBRK,     _______,  _______,       _______,  KC_PSLS,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_PAST,  _______,
     KC_DEL,   KC_LABK,  KC_RABK,  KC_LPRN,  KC_RPRN,  _______,  _______,       _______,  KC_PMNS,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_PPLS,  _______,
-    _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  _______,  _______,       _______,  KC_PDOT,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_PEQL,  _______,
+    _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  KC_COMMA, _______,       _______,  KC_PDOT,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_PEQL,  _______,
                         _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  KC_KP_0,  _______
 ),
 
 [_RAISE] = LAYOUT_via(
     _______,  _______,  _______,  _______,  _______,  _______,                           _______,  _______,  _______,  _______,  _______,  _______,
-    KC_TILD,  KC_F1  ,  KC_F2  ,  KC_F3  ,  KC_F4  ,  _______,  _______,       _______,  _______,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,
-    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,       _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  _______,
-    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,       _______,  _______,  _______,  _______,  _______,  KC_BSLS,  _______,
+    KC_TILD,  KC_F1  ,  KC_F2  ,  KC_F3  ,  KC_F4  ,  _______,  _______,       _______,  KC_VOLU,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,
+    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,       _______,  KC_MUTE,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  _______,
+    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,       _______,  KC_VOLD,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_BSLS,  _______,
                         _______,  _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______
 ),
 
@@ -276,6 +276,12 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                     else if (kc >= KC_RGHT && kc <= KC_UP) {  // arrows
                         r = 66; g = 255; b = 0;
                     }
+                    else if (kc >= KC_MUTE && kc <= KC_VOLD) {  // volume
+                        r = 0; g = 204; b = 153;
+                    }
+                    else if (kc >= KC_MNXT && kc <= KC_EJCT) {  // media
+                        r = 255; g = 153; b = 0;
+                    }
                     else if (kc > KC_TRNS) {
                         r = 255; g = 255; b = 255;
                     }
@@ -284,19 +290,19 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             }
         }
     }
-    else  if (layer == 0) {
-        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
-            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
-                uint8_t index = g_led_config.matrix_co[row][col];
-                if (index >= led_min && index <= led_max && index != NO_LED) {
-                    uint16_t kc = keymap_key_to_keycode(layer, (keypos_t){col,row});
-                    if (kc == XXXXXXX) {
-                        rgb_matrix_set_color( index, 0, 0, 0 );
-                    }
-                }
-            }
-        }
-    }
+    // else  if (layer == 0) {
+    //     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+    //         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+    //             uint8_t index = g_led_config.matrix_co[row][col];
+    //             if (index >= led_min && index <= led_max && index != NO_LED) {
+    //                 uint16_t kc = keymap_key_to_keycode(layer, (keypos_t){col,row});
+    //                 if (kc == XXXXXXX) {
+    //                     rgb_matrix_set_color( index, 0, 0, 0 );
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 

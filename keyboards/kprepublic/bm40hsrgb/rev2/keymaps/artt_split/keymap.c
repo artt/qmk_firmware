@@ -58,14 +58,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = LAYOUT_ortho_4x12_1x2uC(
     KC_GRV,   GUI_LBRK, GUI_RBRK, LBRK,     RBRK,     _______,  KC_PSLS,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_PAST,  _______, 
     KC_DEL,   KC_LABK,  KC_RABK,  KC_LPRN,  KC_RPRN,  _______,  KC_PMNS,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_PPLS,  _______, 
-    _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  _______,  KC_PDOT,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_EQL,   _______, 
+    _______,  _______,  _______,  KC_LCBR,  KC_RCBR,  KC_PCMM,  KC_PDOT,  KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_EQL,   _______, 
     _______,  _______,  _______,  _______,  _______,  _______,            _______,  KC_KP_0,  _______,  _______,  _______
   ),
 
   [_RAISE] = LAYOUT_ortho_4x12_1x2uC(
-    KC_TILD,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    _______,  _______,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  
-    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  _______,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  _______,      
-    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  _______,  _______,  _______,  _______,  KC_BSLS,  _______,  
+    KC_TILD,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    _______,  KC_VOLU,  KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  
+    KC_DEL,   KC_AT,    KC_ASTR,  KC_DLR,   KC_CIRC,  _______,  KC_MUTE,  KC_AMPR,  KC_HASH,  KC_EXLM,  KC_PERC,  _______,      
+    _______,  KC_F5,    KC_F6,    KC_F7,    KC_F8,    _______,  KC_VOLD,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_BSLS,  _______,  
     _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,  _______,  _______
   ),
 
@@ -86,13 +86,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
-  rgb_matrix_enable();
+    rgb_matrix_enable();
 }
 
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
@@ -153,6 +153,12 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                     }
                     else if (kc >= KC_RGHT && kc <= KC_UP) {  // arrows
                         r = 66; g = 255; b = 0;
+                    }
+                    else if (kc >= KC_MUTE && kc <= KC_VOLD) {  // volume
+                        r = 0; g = 204; b = 153;
+                    }
+                    else if (kc >= KC_MNXT && kc <= KC_EJCT) {  // media
+                        r = 255; g = 153; b = 0;
                     }
                     else if (kc > KC_TRNS) {
                         r = 255; g = 255; b = 255;
